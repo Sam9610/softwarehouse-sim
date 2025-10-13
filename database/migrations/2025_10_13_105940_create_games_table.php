@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
+            $table->enum('status', ['paused', 'in_progress'])->default('in_progress');
+            $table->decimal('assets_eur', 15, 2);
             $table->timestamps();
         });
     }

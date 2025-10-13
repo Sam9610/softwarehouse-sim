@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('game_id')->constrained()->onDelete('cascade');
+            $table->enum('role', ['developer', 'sales_man']);
+            $table->string('name');
+            $table->string('surname');
+            $table->enum('status', ['available', 'busy'])->default('available');
+            $table->integer('experience'); // aka seniority
             $table->timestamps();
         });
     }
