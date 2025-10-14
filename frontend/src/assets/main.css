@@ -29,7 +29,7 @@ a,
 
   #app {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     padding: 0 2rem;
   }
 }
@@ -38,13 +38,19 @@ body {
   font-family: sans-serif; background-color: #f0f2f5; margin: 0; color: black 
 }
 #app-container { 
-  max-width: 1200px; margin: 0 auto; padding: 20px; 
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px; 
 }
 header { 
   text-align: center; margin-bottom: 2rem;
 }
 .screen-container { 
-  background-color: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); 
+  background-color: white; 
+  padding: 2rem; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
 }
 .columns { 
   display: flex; gap: 2rem; 
@@ -63,3 +69,25 @@ button:hover {
   background-color: #0056b3; 
 }
 .main-menu { text-align: center; }
+
+.game-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.game-nav a {
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: #e9ecef;
+  color: #495057;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.game-nav a.router-link-active {
+  background-color: #007bff;
+  color: white;
+}
+.exit-link { background-color: #dc3545 !important; color: white !important; }
+
+.game-header { text-align: right; margin-bottom: 1rem; font-size: 1.5rem; }
