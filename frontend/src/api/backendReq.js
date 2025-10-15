@@ -23,5 +23,8 @@ export default {
 	},
 	assignDeveloper(gameId, projectId, developerId) {
 		return axios.post(`${API_URL}/games/${gameId}/projects/${projectId}/assign/${developerId}`);
-	}
+	},
+	updateGame(gameId) {
+        return axios.post(`${API_URL}/games/${gameId}/update`);
+    }
 };

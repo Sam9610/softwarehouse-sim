@@ -10,3 +10,4 @@ Route::get('/hr/market', [GameController::class, 'getMarketCandidates']); // Mos
 Route::post('/games/{game}/hr/hire', [GameController::class, 'hireEmployee']); // Assume risorsa 
 Route::post('/games/{game}/sales/{sales_man}/generate-project', [GameController::class, 'generateProject']);
 Route::post('/games/{game}/projects/{project}/assign/{developer}', [GameController::class, 'assignDeveloper']);
+Route::post('/games/{game}/update', [GameController::class, 'updateGameState']);

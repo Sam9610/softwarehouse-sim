@@ -130,4 +130,38 @@ class GameController extends Controller {
 			'projects' => $game->projects()->with('employee')->get(),
 		];
 	}
+
+	public function updateGameState(Game $game) {
+		// todo check bancarotta
+		// todo gestione tempo effettivo
+		$timeToErode = 10;
+
+		// completa i progetti in lavorazione e libera i developer
+		$completedProjects = $game->projects()->where('status', 'in_progress')->where('remaining_time', '<=', $timeToErode);
+		$totalValue = $completedProjects->sum('value_eur');
+		$developerIdsToFree = (clone $completedProjects)->pluck('employee_id')->filter()->unique();
+		if ($totalValue > 0) {
+			$game->assets_eur += $totalValue;
+			$game->save();
+		}
+		$completedProjects->update(['status' => 'completed', 'remaining_time' => 0, 'employee_id' => null]);
+		if ($developerIdsToFree->isNotEmpty()) {
+			Employee::whereIn('id', $developerIdsToFree)->update(['status' => 'available']);
+		}
+
+		// mette in stato d'attesa i progetti il cui design è terminato e libera i salesman
+		$designedProjects = $game->projects()->where('status', 'in_design')->where('remaining_time', '<=', $timeToErode);
+		$salesIdsToFree = (clone $designedProjects)->pluck('employee_id')->filter()->unique();
+    $designedProjects->update(['status' => 'pending', 'employee_id' => null, 'remaining_time' => 0]);
+		if ($salesIdsToFree->isNotEmpty()) {
+			Employee::whereIn('id', $salesIdsToFree)->update(['status' => 'available']);
+		}
+
+    // aggiorna il tempo rimanente di tutti i progetti in design o lavorazione
+		$game->projects()->whereIn('status', ['in_progress', 'in_design'])->where('remaining_time', '>', $timeToErode)
+       		           ->update(['remaining_time' => DB::raw("remaining_time - $timeToErode")]);
+
+		// Restituisci lo stato aggiornato
+		return response()->json($this->getGameStateData($game->fresh()));
+	}
 }

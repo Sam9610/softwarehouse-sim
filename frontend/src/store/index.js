@@ -61,6 +61,17 @@ export const useGameStore = defineStore('game', {
 		async assign(projectId, developerId) {
 			const response = await backendReq.assignDeveloper(this.gameId, projectId, developerId);
 			this._updateGameState(response.data);
-		}
+		},
+
+		async fetchUpdates() {
+			if (!this.gameId) return;
+		
+			try {
+				const response = await backendReq.updateGame(this.gameId);
+				this._updateGameState(response.data); 
+			} catch (error) {
+				console.error("Errore fetchUpdates", error);
+			}
+		},
 	}
 });
