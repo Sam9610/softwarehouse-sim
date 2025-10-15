@@ -18,7 +18,7 @@
 
 	onMounted(async () => {
 		savedGameId.value = localStorage.getItem('gameId')
-		if(empty(savedGameId.value)) {
+		if(!savedGameId.value) {
 			const response = await backendReq.getPausedGame();
 			savedGameId.value = localStorage.getItem('gameId') || response.data.id;
 		}
