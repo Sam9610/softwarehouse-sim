@@ -1,21 +1,21 @@
 <template>
-  <h2>COMMERCIALI</h2>
+  <h2>{{ $t('pages.sales') }}</h2>
   <div class="columns">
     <div class="column">
-      <h3>Commerciali Disponibili ({{ gameStore.availableSales.length }})</h3>
+      <h3>{{ $t('pages.available_salesmen') }} ({{ gameStore.availableSales.length }})</h3>
       <ul>
         <li v-for="salesperson in gameStore.availableSales" :key="salesperson.id">
-          <span>Commerciale #{{ salesperson.id }} (Esperienza: {{ salesperson.experience }})</span>
-          <button @click="generateNewProject(salesperson)">Genera Progetto</button>
+          <span>{{ $t('pages.sales_man') }} #{{ salesperson.id }} ({{ $t('pages.sales_man_exp') }}: {{ salesperson.experience }})</span>
+          <button @click="generateNewProject(salesperson)">{{ $t('pages.buttons.design') }}</button>
         </li>
       </ul>
     </div>
     <div class="column">
-      <h3>Progetti in generazione</h3>
+      <h3>{{ $t('pages.in_design_projects') }}</h3>
       <ul>
         <li v-for="project in gameStore.designingProjects" :key="project.id">
-          <span>Progetto #{{ project.id }} (Valore: €{{ project.value_eur }})</span>
-          <span class="float-right">Tempo rimanente: {{ project.remaining_time }}s</span>
+          <span>{{ $t('pages.project') }} #{{ project.id }} ({{ $t('pages.value_eur') }}: €{{ project.value_eur }})</span>
+          <span class="float-right">{{ $t('pages.remaining_time') }}: {{ project.remaining_time }}s</span>
         </li>
       </ul>
     </div>
@@ -24,8 +24,10 @@
 
 <script setup>
   import { useGameStore } from '@/store';
+  import { useI18n } from 'vue-i18n';
   
   const gameStore = useGameStore();
+  const { t } = useI18n();
   
   const generateNewProject = async (salesperson) => {
     try {
@@ -33,7 +35,7 @@
       console.log(salesperson)
       await gameStore.generate(salesperson.id);
     } catch (error) {
-      alert("Errore nella generazione del progetto.");
+      alert(t('pages.messages.design_error'));
       console.error(error);
     }
   };

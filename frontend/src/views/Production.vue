@@ -1,19 +1,19 @@
 <template>
-  <h2>PRODUZIONE</h2>
+  <h2>{{ $t('pages.production') }}</h2>
   <div class="columns">
     <div class="column">
-      <h3>Developer disponibili ({{ gameStore.availableDevelopers.length }})</h3>
+      <h3>{{ $t('pages.available_developers') }} ({{ gameStore.availableDevelopers.length }})</h3>
       <ul>
         <li v-for="dev in gameStore.availableDevelopers" :key="dev.id" @click="selectDeveloper(dev)" :class="{ selected: selectedDeveloperId === dev.id }">
-          Developer #{{ dev.id }} (Seniority: {{ dev.experience }})
+          {{ $t('pages.developer') }} #{{ dev.id }} ({{ $t('pages.developer_exp') }}: {{ dev.experience }})
         </li>
       </ul>
     </div>
     <div class="column">
-      <h3>Progetti disponibili ({{ gameStore.pendingProjects.length }})</h3>
+      <h3>{{ $t('pages.available_projects') }} ({{ gameStore.pendingProjects.length }})</h3>
       <ul>
         <li v-for="project in gameStore.pendingProjects" :key="project.id" @click="assignProject(project)">
-          Progetto #{{ project.id }} (Valore: €{{ project.value_eur }})
+          {{ $t('pages.project') }} #{{ project.id }} ({{ $t('pages.value_eur') }}: €{{ project.value_eur }})
           <span>Complessità: {{ project.complexity }}</span>
         </li>
       </ul>
@@ -24,17 +24,19 @@
 <script setup>
   import { useGameStore } from '@/store';
   import { ref } from 'vue';
-  
+  import { useI18n } from 'vue-i18n';
+
   const gameStore = useGameStore();
   const selectedDeveloperId = ref(null);
-  
+  const { t } = useI18n();
+
   const selectDeveloper = (dev) => {
     selectedDeveloperId.value = dev.id;
   };
   
   const assignProject = async (project) => {
     if (!selectedDeveloperId.value) {
-      alert("Seleziona prima un developer!");
+      alert(t('pages.messages.select_dev_first'));
       return;
     }
     try {
@@ -42,7 +44,7 @@
       await gameStore.assign(project.id, selectedDeveloperId.value);
       selectedDeveloperId.value = null;
     } catch (error) {
-      alert("Errore nell'assegnazione del progetto.");
+      alert(t('pages.messages.assign_error'));
       console.error(error);
     }
   };

@@ -1,7 +1,7 @@
 <template>
   <div v-if="gameStore.gameId">
     <div class="game-header">
-      <h3>Patrimonio: €{{ gameStore.assets_eur.toFixed(2) }}</h3>
+      <h3>{{ $t('game.assets_eur') }}: €{{ gameStore.assets_eur.toFixed(2) }}</h3>
     </div>
     <div class="screen-container">
       <router-view />
@@ -9,7 +9,7 @@
     <Navigation />
   </div>
   <div v-else>
-    <p>Caricamento partita...</p>
+    <p>{{ $t('menu.loading_game') }}</p>
   </div>
 </template>
 

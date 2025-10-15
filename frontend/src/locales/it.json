@@ -1,0 +1,58 @@
+{
+	"app": {
+		"title": "Simulatore Softwarehouse"
+	},
+	"menu": {
+		"title": "Menu Principale",
+		"new_game": "Inizia Nuova Partita",
+		"loading_game": "Caricamento partita...",
+		"resume_game": "Riprendi Partita Salvata",
+		"lost_message": "Hai perso! Sei andato in bancarotta :(",
+		"loading_error": "Impossibile caricare la partita. Iniziane una nuova."
+	},
+	"navigation" :{
+		"buttons" :{
+			"production": "Produzione",
+			"sales": "Sales",
+			"hr": "HR",
+			"exit": "Esci dalla Partita"
+		}
+	},
+	"pages" :{
+		"production": "PRODUZIONE",
+		"sales": "SALES",
+		"hr": "HR",
+		"available_projects": "Progetti disponibili",
+		"available_developers": "Developer disponibili",
+		"available_salesmen": "Commerciali Disponibili",
+		"in_design_projects": "Progetti in generazione",
+		"remaining_time": "Tempo rimanente",
+		"project": "Progetto",
+		"value_eur": "Valore",
+		"developer": "Developer",
+		"developer_exp": "Seniority",
+		"sales_man": "Commerciale",
+		"sales_man_exp": "Esperienza",
+		"status_available": "Disponibile",
+		"team": "Team attuale",
+		"designing": "Sta generando",
+		"developing": "Sta sviluppando",
+		"available_employees": "Candidati sul Mercato",
+		"hiring_cost": "Costo",
+		"buttons": {
+			"hire": "Assumi",
+			"reload_employees": "Aggiorna lista risorse",
+			"design": "Genera Progetto"
+		},
+		"messages": {
+			"assets_too_low": "Patrimonio insufficiente per l'assunzione!",
+			"hiring_error": "Errore durante l'assunzione.",
+			"select_dev_first": "Seleziona prima un developer!",
+			"assign_error": "Errore nell'assegnazione del progetto.",
+			"design_error": "Errore nella generazione del progetto."
+		}
+	},
+	"game": {
+		"assets_eur": "Patrimonio"
+	}
+}
