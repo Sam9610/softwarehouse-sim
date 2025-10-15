@@ -15,8 +15,47 @@
       <div class="column">
           <h3>Team Attuale</h3>
           <ul>
-            <li v-for="dev in gameStore.developers" :key="dev.id">Developer #{{ dev.id }}</li>
-            <li v-for="sales in gameStore.sales_men" :key="sales.id">Commerciale #{{ sales.id }}</li>
+            <li v-for="employee in gameStore.developers" :key="employee.id">
+              <div>
+                <strong>Developer #{{ employee.id }}</strong>
+              </div>
+              
+              <div class="assignment-details">
+                <template v-if="getAssignedProject(employee.id)">
+                  <span class="project-info">
+                    Sta sviluppando <strong>Progetto #{{ getAssignedProject(employee.id).id }}</strong>
+                    <br>
+                    <small>Tempo rimanente: {{ getAssignedProject(employee.id).remaining_time }}s</small>
+                  </span>
+                </template>
+                <template v-else>
+                  <span class="status-available">
+                    Disponibile
+                  </span>
+                </template>
+              </div>
+            </li>
+
+            <li v-for="employee in gameStore.sales_men" :key="employee.id">
+              <div>
+                <strong>Commerciale #{{ employee.id }}</strong>
+              </div>
+              
+              <div class="assignment-details">
+                <template v-if="getAssignedProject(employee.id)">
+                  <span class="project-info">
+                    Sta generando <strong>Progetto #{{ getAssignedProject(employee.id).id }}</strong>
+                    <br>
+                    <small>Tempo rimanente: {{ getAssignedProject(employee.id).remaining_time }}s</small>
+                  </span>
+                </template>
+                <template v-else>
+                  <span class="status-available">
+                    Disponibile
+                  </span>
+                </template>
+              </div>
+            </li>
           </ul>
       </div>
     </div>
@@ -48,6 +87,12 @@
         alert("Errore durante l'assunzione.");
         console.error(error);
       }
+    };
+
+    const getAssignedProject = (employeeId) => {
+      return gameStore.projects.find(
+        project => project.employee_id === employeeId && ['in_progress', 'in_design'].includes(project.status)
+      );
     };
     
     onMounted(fetchMarket); // Carica i candidati all'apertura della schermata

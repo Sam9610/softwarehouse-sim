@@ -88,3 +88,28 @@ button:hover {
 .exit-link { background-color: #dc3545 !important; color: white !important; }
 
 .game-header { text-align: right; margin-bottom: 1rem; font-size: 1.5rem; }
+
+.bankruptcy-message {
+  color: #e74c3c;
+  margin-bottom: 2rem;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.assignment-details {
+  text-align: right;
+  font-size: 0.9em;
+}
+
+.project-info {
+  color: #e67e22;
+}
+
+.status-available {
+  color: #2ecc71;
+  font-weight: bold;
+}

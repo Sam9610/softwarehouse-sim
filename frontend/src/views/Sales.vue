@@ -15,6 +15,7 @@
       <ul>
         <li v-for="project in gameStore.designingProjects" :key="project.id">
           <span>Progetto #{{ project.id }} (Valore: €{{ project.value_eur }})</span>
+          <span class="float-right">Tempo rimanente: {{ project.remaining_time }}s</span>
         </li>
       </ul>
     </div>

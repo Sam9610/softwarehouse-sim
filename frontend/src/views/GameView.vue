@@ -32,9 +32,15 @@
     }
 
     // avvia aggiornamento periodico tempistiche rimanenti ed aggiornamenti patrimonio
-    pollingTimer = setInterval(() => {
-      console.log("fetchUpdates");
-      gameStore.fetchUpdates(); 
+    pollingTimer = setInterval(async () => {
+      const gameStatus = await gameStore.fetchUpdates();
+      // console.log("GameView -> onmounted, gameStatus:", gameStatus);
+      // check bancarotta
+      if (gameStatus === 'bankruptcy') {
+        clearInterval(pollingTimer);
+        // se bancarotta ferma la partita e reindirizza a menu
+        router.push({ name: 'MainMenu', query: { status: 'lost' } });
+      }
     }, 10000);
   });
 

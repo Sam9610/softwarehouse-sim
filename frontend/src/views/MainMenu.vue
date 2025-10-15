@@ -1,13 +1,14 @@
 <template>
 	<div class="main-menu">
-		<h2>Menu Principale</h2>
+		<h2 v-if="showLostMessage" class="lost-message">Hai perso! Sei andato in bancarotta :(</h2>
+		<h2 v-else>Menu Principale</h2>
 		<button @click="startNewGame">Inizia Nuova Partita</button>
 		<button v-if="savedGameId" @click="resumeGame">Riprendi Partita Salvata</button>
 	</div>
 </template>
 
 <script setup>
-	import { useRouter } from 'vue-router';
+	import { useRouter, useRoute } from 'vue-router';
 	import { useGameStore } from '@/store';
 	import { onMounted, ref } from 'vue';
 	import backendReq from '@/api/backendReq';
@@ -16,8 +17,15 @@
 	const gameStore = useGameStore();
 	const savedGameId = ref(null);
 
+	const currentRoute = useRoute();
+	const showLostMessage = ref(false);
+
 	onMounted(async () => {
-		savedGameId.value = localStorage.getItem('gameId')
+		savedGameId.value = localStorage.getItem('gameId');
+		if (currentRoute.query.status === 'lost') {
+			showLostMessage.value = true;
+		}
+
 		if(!savedGameId.value) {
 			const response = await backendReq.getPausedGame();
 			savedGameId.value = localStorage.getItem('gameId') || response.data.id;

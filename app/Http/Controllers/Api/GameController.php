@@ -31,8 +31,11 @@ class GameController extends Controller {
 	// Recupera eventuali partite non terminate dal DB
 	public function getPausedGame() {
 		$game = Game::whereNot('status', 'bankruptcy')->latest('updated_at')->first();
-
-		return response()->json($this->getGameStateData($game));
+		if(isset($game)){
+			return response()->json($this->getGameStateData($game));
+		} else {
+			return response()->json([]);
+		}
 	}
 
 	// Recupera lo stato di una partita salvata 
@@ -128,6 +131,7 @@ class GameController extends Controller {
 			'developers' => $game->employees()->where('role', 'developer')->get(),
 			'sales_men' => $game->employees()->where('role', 'sales_man')->get(),
 			'projects' => $game->projects()->with('employee')->get(),
+			'status' => $game->status
 		];
 	}
 

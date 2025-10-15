@@ -9,7 +9,7 @@ export const useGameStore = defineStore('game', {
 		developers: [],
 		sales_men: [],
 		projects: [],
-		last_update: null
+		status: 'in_progress'
 	}),
 
 	getters: {
@@ -28,7 +28,13 @@ export const useGameStore = defineStore('game', {
 			this.developers = gameState.developers;
 			this.sales_men = gameState.sales_men;
 			this.projects = gameState.projects;
-			localStorage.setItem('gameId', this.gameId);
+			this.status = gameState.status;
+
+			if (this.status === 'bankruptcy') {
+				localStorage.removeItem('gameId');
+			} else {
+				localStorage.setItem('gameId', this.gameId);
+			}
 		},
 
 		async newGame() {
@@ -65,11 +71,17 @@ export const useGameStore = defineStore('game', {
 		},
 
 		async fetchUpdates() {
+			// console.log("fetchUpdates, this:", this);
 			if (!this.gameId) return;
 		
 			try {
 				const response = await backendReq.updateGame(this.gameId);
-				this._updateGameState(response.data); 
+				this._updateGameState(response.data);
+				if (this.status === 'bankruptcy') {
+					// console.log('bankruptcy!!!');
+					localStorage.removeItem('gameId');
+					return 'bankruptcy';
+				}
 			} catch (error) {
 				console.error("Errore fetchUpdates", error);
 			}
