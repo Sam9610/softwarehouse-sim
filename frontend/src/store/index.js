@@ -9,6 +9,7 @@ export const useGameStore = defineStore('game', {
 		developers: [],
 		sales_men: [],
 		projects: [],
+		last_update: null
 	}),
 
 	getters: {
