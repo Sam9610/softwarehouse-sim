@@ -66,10 +66,12 @@
     import backendReq from '@/api/backendReq';
     import { ref, onMounted } from 'vue';
     import { useI18n } from 'vue-i18n';
-    
+    import { useToast } from 'vue-toastification';
+
     const gameStore = useGameStore();
     const candidates = ref([]);
     const { t } = useI18n();
+    const toast = useToast();
 
     const fetchMarket = async () => {
       const response = await backendReq.getMarketCandidates();
@@ -78,7 +80,7 @@
     
     const hire = async (candidate) => {
       if (gameStore.assets_eur < candidate.cost) {
-        alert(t('pages.messages.assets_too_low'));
+        toast.error(t('pages.messages.assets_too_low'));
         return;
       }
       try {
@@ -86,7 +88,7 @@
         // aggiornamento con nuovi candidati
         fetchMarket();
       } catch (error) {
-        alert(t('pages.messages.hiring_error'));
+        toast.error(t('pages.messages.hiring_error'));
         console.error(error);
       }
     };

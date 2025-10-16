@@ -17,10 +17,14 @@ const i18n = createI18n({
   }
 })
 
+import Toast from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
+
 const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
 app.use(i18n)
+app.use(Toast)
 
 app.mount('#app')

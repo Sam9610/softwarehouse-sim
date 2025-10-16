@@ -25,17 +25,19 @@
 <script setup>
   import { useGameStore } from '@/store';
   import { useI18n } from 'vue-i18n';
-  
+  import { useToast } from 'vue-toastification';
+
   const gameStore = useGameStore();
   const { t } = useI18n();
-  
+  const toast = useToast();
+
   const generateNewProject = async (salesperson) => {
     try {
       // I progetti generati entrano in pending
       console.log(salesperson)
       await gameStore.generate(salesperson.id);
     } catch (error) {
-      alert(t('pages.messages.design_error'));
+      toast.error(t('pages.messages.design_error'));
       console.error(error);
     }
   };

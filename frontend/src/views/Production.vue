@@ -25,10 +25,12 @@
   import { useGameStore } from '@/store';
   import { ref } from 'vue';
   import { useI18n } from 'vue-i18n';
+  import { useToast } from 'vue-toastification';
 
   const gameStore = useGameStore();
   const selectedDeveloperId = ref(null);
   const { t } = useI18n();
+  const toast = useToast();
 
   const selectDeveloper = (dev) => {
     selectedDeveloperId.value = dev.id;
@@ -36,7 +38,7 @@
   
   const assignProject = async (project) => {
     if (!selectedDeveloperId.value) {
-      alert(t('pages.messages.select_dev_first'));
+      toast.info(t('pages.messages.select_dev_first'));
       return;
     }
     try {
@@ -44,7 +46,7 @@
       await gameStore.assign(project.id, selectedDeveloperId.value);
       selectedDeveloperId.value = null;
     } catch (error) {
-      alert(t('pages.messages.assign_error'));
+      toast.error(t('pages.messages.assign_error'));
       console.error(error);
     }
   };

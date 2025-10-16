@@ -14,6 +14,7 @@
 	import { onMounted, ref } from 'vue';
 	import backendReq from '@/api/backendReq';
 	import { useI18n } from 'vue-i18n';
+    import { useToast } from 'vue-toastification';
 
 	const router = useRouter();
 	const gameStore = useGameStore();
@@ -21,7 +22,8 @@
   	const { t } = useI18n();
 	const currentRoute = useRoute();
 	const showLostMessage = ref(false);
-
+    const toast = useToast();
+	
 	onMounted(async () => {
 		savedGameId.value = localStorage.getItem('gameId');
 		if (currentRoute.query.status === 'lost') {
@@ -43,7 +45,7 @@
 		if (await gameStore.loadGame(savedGameId.value)) {
 			router.push(`/game/${gameStore.gameId}/production`);
 		} else {
-			alert(t('menu.loading_error'));
+			toast.error(t('menu.loading_error'));
 			savedGameId.value = null;
 		}
 	};
