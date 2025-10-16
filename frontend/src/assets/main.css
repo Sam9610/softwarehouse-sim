@@ -265,7 +265,41 @@ li {
   background-color: var(--danger-color) !important;
   color: white !important;
 }
+
 .exit-link.menu-item:hover {
   background-color: #fbecec;
   color: var(--danger-color);
+}
+
+.short-text {
+  display: none;
+}
+.long-text {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  #app-content,
+  #app-content.sidebar-visible {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .columns {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .main-menu-image {
+    max-width: 300px;
+    margin-bottom: 0px;
+  }
+
+  .short-text {
+    display: inline;
+  }
+  .long-text {
+    display: none;
+  }
 }

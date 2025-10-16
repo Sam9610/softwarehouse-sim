@@ -1,6 +1,6 @@
 {
 	"app": {
-		"title": "Simulatore Softwarehouse"
+		"title": "My Little Softwarehouse"
 	},
 	"menu": {
 		"title": "Menu Principale",
@@ -15,7 +15,8 @@
 			"production": "Produzione",
 			"sales": "Sales",
 			"hr": "HR",
-			"exit": "Esci dalla Partita"
+			"exit": "Esci dalla Partita",
+			"exit_short": "Esci"
 		}
 	},
 	"pages" :{
