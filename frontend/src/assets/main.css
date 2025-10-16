@@ -19,6 +19,12 @@
   transition: grid-template-columns 0.3s ease-in-out;
 }
 
+.main-menu-image {
+  max-width: 400px;
+  height: auto;
+  margin-bottom: 2rem;
+}
+
 a, .green {
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);

@@ -12,7 +12,7 @@
 <template>
   <div id="app-container">
     <header>
-      <h1>{{ t('app.title') }}</h1>
+      <img src="/images/main-logo.jpg" alt="{{ t('app.title') }}" class="main-menu-image">
     </header>
     <main>
       <router-view />
