@@ -113,3 +113,104 @@ li {
   color: #2ecc71;
   font-weight: bold;
 }
+
+.hamburger-menu {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  background: #007bff;
+  color: white;
+  border: none;
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: white;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  padding-top: 80px;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 999;
+}
+
+.sidebar.is-open {
+  transform: translateX(0);
+}
+
+.game-header {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.game-nav {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.layout-horizontal {
+  justify-content: center;
+}
+
+.layout-vertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.game-nav a {
+  display: block;
+  padding: 12px 20px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-button {
+  background-color: #ecf0f1;
+  color: #7f8c8d;
+  text-align: center;
+}
+
+.nav-button.router-link-exact-active {
+  background-color: #007bff;
+  color: white;
+}
+
+.menu-item {
+  background-color: transparent;
+  color: #2c3e50;
+  text-align: left;
+}
+
+.menu-item:hover {
+  background-color: #f2f2f2;
+}
+.menu-item.router-link-exact-active {
+  background-color: #eaf5ff;
+  color: #3498db;
+}
+
+.exit-link.nav-button {
+  background-color: #dc3545 !important;
+  color: white !important;
+}
+.exit-link.menu-item:hover {
+  background-color: #fbecec;
+  color: #dc3545;
+}
