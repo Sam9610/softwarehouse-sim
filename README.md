@@ -34,15 +34,6 @@ docker compose exec app php artisan migrate
 
 ```  
 
-### Avvia il frontend  
-```sh
-
-cd frontend
-npm install
-npm run dev
-
-```  
-
 ### Test applicazione  
 L'applicazione sarà accessibile ai seguenti indirizzi: 
 Backend: `http://localhost:8000`  
