@@ -15,6 +15,7 @@ class GameController extends Controller {
 	// Inizia una nuova partita
 	public function startNewGame() {
 		$game = DB::transaction(function () {
+			$game = Game::whereNot('status', 'bankruptcy')->update(['status' => 'discarded']);
 			// Crea una partita con patrimonio 5k
 			$game = Game::create(['assets_eur' => 5000]);
 
