@@ -1,6 +1,6 @@
 <template>
 	<div class="main-menu">
-		<h2 v-if="showLostMessage" class="lost-message">{{ $t('menu.lost_message') }}</h2>
+		<h2 v-if="showLostMessage" class="bankruptcy-message">{{ $t('menu.lost_message') }}</h2>
 		<h2 v-else>{{ $t('menu.title') }}</h2>
 		<br></br>
 		<button @click="startNewGame">{{ $t('menu.new_game') }}</button>
