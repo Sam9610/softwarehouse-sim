@@ -43,7 +43,7 @@ class Game extends Model
 	public function checkDesignedProjects(int $time_s): void {
 		$designedProjects = $this->projects()->where('status', 'in_design')->where('remaining_time', '<=', $time_s);
 		$salesIdsToFree = (clone $designedProjects)->pluck('employee_id')->filter()->unique();
-    $designedProjects->update(['status' => 'pending', 'employee_id' => null, 'remaining_time' => 0]);
+    	$designedProjects->update(['status' => 'pending', 'employee_id' => null, 'remaining_time' => 0]);
 		if ($salesIdsToFree->isNotEmpty()) {
 			Employee::whereIn('id', $salesIdsToFree)->update(['status' => 'available']);
 		}
@@ -52,7 +52,7 @@ class Game extends Model
 	// aggiorna il tempo rimanente di tutti i progetti in design o lavorazione
 	public function checkWIPProjects(int $time_s): void {
 		$this->projects()->whereIn('status', ['in_progress', 'in_design'])->where('remaining_time', '>', $time_s)
-       		           ->update(['remaining_time' => DB::raw("remaining_time - $time_s")]);
+       		             ->update(['remaining_time' => DB::raw("remaining_time - $time_s")]);
 	}
 
 

@@ -150,10 +150,10 @@ class GameController extends Controller {
 
 		// check bancarotta
 		$stillAlive = $game->payday();
-    if (!$stillAlive) {
-        $game->status = 'bankruptcy'; // Imposta lo stato a bancarotta
-        $game->save();
-    }
+		if (!$stillAlive) {
+			$game->status = 'bankruptcy'; // Imposta lo stato a bancarotta
+			$game->save();
+		}
 
 		return response()->json($this->getGameStateData($game->fresh()));
 	}
