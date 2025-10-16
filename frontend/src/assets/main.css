@@ -23,6 +23,7 @@
   max-width: 400px;
   height: auto;
   margin-bottom: 2rem;
+  border-radius: 3px;
 }
 
 a, .green {
