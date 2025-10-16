@@ -45,19 +45,22 @@ services:
       - softwarehouse-network
     
   frontend:
-      container_name: softwarehouse-frontend
-      image: node:20-alpine
-      restart: unless-stopped
-      working_dir: /var/www/frontend
-      ports:
-        - "5173:5173"
-      environment:
-        - VITE_API_URL=http://localhost:8000/api
-      volumes:
-        - ./frontend:/var/www/frontend
-      networks:
-        - softwarehouse-network
-      command: sh -c "npm install && npm run dev -- --host
+    container_name: softwarehouse-frontend
+    image: node:20-alpine
+    restart: unless-stopped
+    working_dir: /var/www/frontend
+    ports:
+      - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
+    volumes:
+      - ./frontend:/var/www/frontend
+    networks:
+      - softwarehouse-network
+    command:
+      - "sh"
+      - "-c"
+      - "npm install && npm run dev -- --host"
 
 networks:
   softwarehouse-network:
