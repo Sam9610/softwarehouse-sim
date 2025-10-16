@@ -8,7 +8,7 @@
 	</div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 	import { useRouter, useRoute } from 'vue-router';
 	import { useGameStore } from '@/store';
 	import { onMounted, ref } from 'vue';
@@ -37,8 +37,8 @@
 	});
 
 	const startNewGame = async () => {
-	await gameStore.newGame();
-	router.push(`/game/${gameStore.gameId}/production`);
+		await gameStore.newGame();
+		router.push(`/game/${gameStore.gameId}/production`);
 	};
 
 	const resumeGame = async () => {

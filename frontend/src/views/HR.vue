@@ -61,7 +61,7 @@
     </div>
   </template>
   
-  <script setup>
+  <script setup lang="ts">
     import { useGameStore } from '@/store';
     import backendReq from '@/api/backendReq';
     import { ref, onMounted } from 'vue';

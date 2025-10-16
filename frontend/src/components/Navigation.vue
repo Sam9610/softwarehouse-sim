@@ -10,7 +10,7 @@
   </nav>
 </template>
   
-<script setup>
+<script setup lang="ts">
   import { useGameStore } from '@/store';
   import { computed } from 'vue';
   const gameStore = useGameStore();

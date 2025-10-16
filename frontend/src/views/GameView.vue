@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { useGameStore } from '@/store';
   import { useRoute, useRouter } from 'vue-router';
   import { onMounted, onUnmounted } from 'vue';

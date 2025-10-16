@@ -21,7 +21,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
   import { useGameStore } from '@/store';
   import { ref } from 'vue';
   import { useI18n } from 'vue-i18n';
