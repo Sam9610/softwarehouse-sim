@@ -1,9 +1,10 @@
-# My Little Softwarehouse
+# My Little Softwarehouse  
 
 Backend: **Laravel** + **PostgreSQL**  
 Frontend: **Vue.js**
 
-### Clona il repository e crea file .env
+### Clona il repository e crea file .env  
+Clona il repository e spostati nella nuova cartella  
 Copia il file `.env.example` in un nuovo file `.env`
 
 ### Costruisci ed avvia i container  
