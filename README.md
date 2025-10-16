@@ -13,13 +13,6 @@ docker compose up -d --build
 
 ```  
 
-### Installa le dipendenze del backend  
-```sh
-
-docker compose exec app composer install
-
-```  
-
 ### Genera la chiave per Laravel  
 ```sh
 
@@ -37,4 +30,4 @@ docker compose exec app php artisan migrate
 ### Test applicazione  
 L'applicazione sarà accessibile ai seguenti indirizzi: 
 Backend: `http://localhost:8000`  
-Frontend: `http://localhost:5173`  o ciò che verrà indicato da `npm run dev`
+Frontend: `http://localhost:5173` 
