@@ -1,9 +1,9 @@
 <template>
-  <button @click="isSidebarOpen = !isSidebarOpen" class="hamburger-menu">
+  <button @click="gameStore.toggleSidebar()" class="hamburger-menu">
     ☰
   </button>
 
-  <aside class="sidebar" :class="{ 'is-open': isSidebarOpen }">
+  <aside class="sidebar" :class="{ 'is-open': gameStore.isSidebarOpen }">
     <Navigation layout="vertical" />
   </aside>
 
@@ -15,7 +15,7 @@
       <router-view />
     </div>
 
-    <Navigation v-if="!isSidebarOpen" />
+    <Navigation v-if="!gameStore.isSidebarOpen" />
   </div>
   <div v-else>
     <p>{{ $t('menu.loading_game') }}</p>
@@ -25,13 +25,12 @@
 <script setup>
   import { useGameStore } from '@/store';
   import { useRoute, useRouter } from 'vue-router';
-  import { onMounted, onUnmounted, ref } from 'vue';
+  import { onMounted, onUnmounted } from 'vue';
   import Navigation from '@/components/Navigation.vue';
 
   const gameStore = useGameStore();
   const route = useRoute();
   const router = useRouter();
-  const isSidebarOpen = ref(false);
   let pollingTimer = null;
 
   // Carica lo stato della partita quando il componente viene montato

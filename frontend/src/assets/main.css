@@ -1,13 +1,25 @@
 @import './base.css';
 
+:root {
+  --primary-color: #3498db;
+  --primary-hover: #2980b9;
+  --success-color: #2ecc71;
+  --info-color: #e67e22;
+  --danger-color: #e74c3c;
+  --danger-hover: #c0392b;
+  --surface-color: #ffffff;
+  --text-color: #2c3e50;
+  --background-color: #f4f7f9;
+}
+
 #app {
   display: grid;
   grid-template-columns: 1fr minmax(0, 1000px) 1fr;
   padding: 2rem;
+  transition: grid-template-columns 0.3s ease-in-out;
 }
 
-a,
-.green {
+a, .green {
   text-decoration: none;
   color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
@@ -25,53 +37,73 @@ a,
     /* display: flex; */
     place-items: center;
   }
-
-  /* #app {
-    display: grid;
-    grid-template-columns: 1fr;
-    padding: 0 2rem;
-  } */
 }
 
 body { 
-  font-family: sans-serif; background-color: #f0f2f5; margin: 0; color: black 
+  font-family: sans-serif;
+  background-color: var(--background-color);
+  margin: 0;
+  color: var(--text-color); 
 }
+
 #app-container { 
   grid-column: 2;
 }
+
 header { 
   text-align: center; margin-bottom: 2rem;
 }
+
 .screen-container { 
-  background-color: white; 
+  background-color: var(--surface-color); 
   padding: 2rem; 
-  border-radius: 8px; 
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  border-radius: 12px; 
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
   margin-bottom: 2rem;
 }
+
 .columns { 
   display: flex; gap: 2rem; 
 }
+
 .column { flex: 1; }
+
 ul { 
   list-style: none; padding: 0; 
 }
+
 li { 
-  background: #fafafa; border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; 
+  background: #fafafa; 
+  border: 1px solid #ddd; 
+  padding: 10px; 
+  margin-bottom: 10px; 
+  border-radius: 4px; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
 }
+
 button { 
   cursor: pointer; 
-  padding: 8px 12px; 
+  padding: 10px 16px; 
   border: none; 
-  border-radius: 4px; 
-  background-color: #007bff; 
+  border-radius: 6px; 
+  background-color: var(--primary-color); 
   color: white; 
-  margin-right: 10px;
-  margin-bottom: 10px;
+  margin: 5px;
+  margin-left: 0px;
+  font-weight: bold;
+  font-size: 0.9rem;
 }
+
 button:hover { 
-  background-color: #0056b3; 
+  background-color: var(--primary-hover); 
 }
+
+h1, h2 {
+  font-weight: bold;
+}
+
 .main-menu { text-align: center; }
 
 .game-nav {
@@ -80,6 +112,7 @@ button:hover {
   gap: 1rem;
   margin-bottom: 1.5rem;
 }
+
 .game-nav a {
   padding: 10px 20px;
   text-decoration: none;
@@ -88,16 +121,24 @@ button:hover {
   border-radius: 5px;
   font-weight: bold;
 }
+
 .game-nav a.router-link-active {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
 }
-.exit-link { background-color: #dc3545 !important; color: white !important; }
+.exit-link { 
+  background-color: var(--danger-color) !important; 
+  color: white !important; 
+}
 
-.game-header { text-align: right; margin-bottom: 1rem; font-size: 1.5rem; }
+.game-header { 
+  text-align: right; 
+  margin-bottom: 1rem; 
+  font-size: 1.5rem; 
+}
 
 .bankruptcy-message {
-  color: #e74c3c;
+  color: var(--danger-color);
   margin-bottom: 2rem;
 }
 
@@ -113,11 +154,11 @@ li {
 }
 
 .project-info {
-  color: #e67e22;
+  color: var(--info-color);
 }
 
 .status-available {
-  color: #2ecc71;
+  color: var(--success-color);
   font-weight: bold;
 }
 
@@ -126,7 +167,7 @@ li {
   top: 20px;
   left: 20px;
   z-index: 1000;
-  background: #007bff;
+  background: var(--primary-color);
   color: white;
   border: none;
   font-size: 1.5rem;
@@ -145,7 +186,7 @@ li {
   left: 0;
   width: 250px;
   height: 100%;
-  background-color: white;
+  background-color: var(--surface-color);
   box-shadow: 2px 0 5px rgba(0,0,0,0.1);
   padding-top: 80px;
   transform: translateX(-100%);
@@ -195,13 +236,13 @@ li {
 }
 
 .nav-button.router-link-exact-active {
-  background-color: #007bff;
+  background-color: var(--primary-color);
   color: white;
 }
 
 .menu-item {
   background-color: transparent;
-  color: #2c3e50;
+  color: var(--text-color);
   text-align: left;
 }
 
@@ -214,10 +255,10 @@ li {
 }
 
 .exit-link.nav-button {
-  background-color: #dc3545 !important;
+  background-color: var(--danger-color) !important;
   color: white !important;
 }
 .exit-link.menu-item:hover {
   background-color: #fbecec;
-  color: #dc3545;
+  color: var(--danger-color);
 }

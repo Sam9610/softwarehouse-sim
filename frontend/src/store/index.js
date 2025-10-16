@@ -9,7 +9,8 @@ export const useGameStore = defineStore('game', {
 		developers: [],
 		sales_men: [],
 		projects: [],
-		status: 'in_progress'
+		status: 'in_progress',
+		isSidebarOpen: false
 	}),
 
 	getters: {
@@ -35,6 +36,10 @@ export const useGameStore = defineStore('game', {
 			} else {
 				localStorage.setItem('gameId', this.gameId);
 			}
+		},
+
+		toggleSidebar() {
+			this.isSidebarOpen = !this.isSidebarOpen;
 		},
 
 		async newGame() {
