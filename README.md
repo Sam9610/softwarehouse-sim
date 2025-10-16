@@ -28,6 +28,6 @@ docker compose exec app php artisan migrate
 ```  
 
 ### Test applicazione  
-L'applicazione sarà accessibile ai seguenti indirizzi: 
+L'applicazione sarà accessibile ai seguenti indirizzi:   
 Backend: `http://localhost:8000`  
 Frontend: `http://localhost:5173` 
