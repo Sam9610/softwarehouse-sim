@@ -51,15 +51,13 @@ services:
     restart: unless-stopped
     ports:
       - "5173:5173"
+    environment:
+      - VITE_API_URL=http://localhost:8000/api
     volumes:
       - ./frontend:/app
       - /app/node_modules
     networks:
       - softwarehouse-network
-    command:
-      - "sh"
-      - "-c"
-      - "npm install && npm run dev -- --host 0.0.0.0"
 
 networks:
   softwarehouse-network:
